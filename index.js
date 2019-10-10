@@ -198,55 +198,66 @@ app.get('/students', function (req, res) {
     })
 })
 
-app.get('/studentprograms', function (req, res) {
-    res.send({
-        "data": [
-            {
-                "studentID": "A00010568",
-                "programs": [
-                    {
-                        "codigo": "019_B1",
-                        "descricao": "Ciencia da Computacao",
-                    },
-                    {
-                        "codigo": "026_B1",
-                        "descricao": "Ciencias Atuariais",
-                    }
-                ]
-            },
-            {
-                "studentID": "A00015087",
-                "programs": [
-                    {
-                        "codigo": "093_B1",
-                        "descricao": "Ciencias Biologicas",
-                    },
-                ]
-            },
-            {
-                "studentID": "A00027918",
-                "programs": [
-                    {
-                        "codigo": "311_B1",
-                        "descricao": "Ciencias Contabeis",
-                    }
-                ]
-            },
-            {
-                "studentID": "A00027916",
-                "programs": [
-                    {
-                        "codigo": "311_B1",
-                        "descricao": "Ciencias Contabeis",
-                    },
-                    {
-                        "codigo": "004_B1",
-                        "descricao": "Ciencias Economicas",
-                    }
-                ]
-            },
-        ]
-    })
+
+
+app.get('/studentprograms/:id', function (req, res) {
+    let stuPrograms = [
+        {
+            "studentID": "A00010568",
+            "programs": [
+                {
+                    "codigo": "019_B1",
+                    "descricao": "Ciencia da Computacao",
+                    "periodo":"201910"
+                },
+                {
+                    "codigo": "026_B1",
+                    "descricao": "Ciencias Atuariais",
+                    "periodo":"201920"
+                }
+            ]
+        },
+        {
+            "studentID": "A00015087",
+            "programs": [
+                {
+                    "codigo": "093_B1",
+                    "descricao": "Ciencias Biologicas",
+                    "periodo":"201920"
+                },
+            ]
+        },
+        {
+            "studentID": "A00027918",
+            "programs": [
+                {
+                    "codigo": "311_B1",
+                    "descricao": "Ciencias Contabeis",
+                    "periodo":"201910"
+                }
+            ]
+        },
+        {
+            "studentID": "A00027916",
+            "programs": [
+                {
+                    "codigo": "311_B1",
+                    "descricao": "Ciencias Contabeis",
+                    "periodo":"201920"
+                },
+                {
+                    "codigo": "004_B1",
+                    "descricao": "Ciencias Economicas",
+                    "periodo":"201910"
+                }
+            ]
+        },
+    ]
+    stuPrograms.forEach(element => {
+        if (element.studentID == req.params.id) {
+            res.send({element})
+        }
+    });
 })
 
 app.listen(port, function () {
